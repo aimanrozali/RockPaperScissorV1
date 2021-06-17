@@ -6,18 +6,9 @@ void ScoreStack::pushScore(int s)
 {
 
     // Create new node temp and allocate memory
-    struct Node* temp;
-    temp = new Node();
-
-    // Check if stack (heap) is full.
-    // Then inserting an element would
-    // lead to stack overflow
-    if (!temp)
-    {
-        cout << "\nRound Exceeded";
-        exit(1);
-    }
-
+//    struct Node* temp;
+//    temp = new Node();
+    struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
     // Initialize data into temp data field
     temp->score = s;
 
@@ -26,6 +17,7 @@ void ScoreStack::pushScore(int s)
 
     // Make temp as top of Stack
     top = temp;
+
 }
 
 // Utility function to check if
@@ -44,8 +36,7 @@ void ScoreStack::popScore()
     // Check for stack underflow
     if (top == NULL)
     {
-        cout << "\nPlayer not play any games!" << endl;
-        exit(1);
+        cout << "\nNo points :( " << endl;
     }
     else
     {
@@ -65,9 +56,8 @@ void ScoreStack::popScore()
     }
 }
 
-// Function to print all the
-// elements of the stack
-int ScoreStack::displayScore()
+
+int ScoreStack::getScore()
 {
     struct Node* temp;
     int total = 0;
@@ -75,8 +65,9 @@ int ScoreStack::displayScore()
     // Check for stack underflow
     if (top == NULL)
     {
-        cout << "\nPlayer not play any games!";
-        exit(1);
+        cout << "\n No Points :( !";
+        return 0;
+        //exit(1);
     }
     else
     {
@@ -89,7 +80,9 @@ int ScoreStack::displayScore()
             total += temp->score;
             // Assign temp link to temp
             temp = temp->link;
+
         }
+        return total;
     }
-    return total;
+
 }

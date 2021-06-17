@@ -1,8 +1,8 @@
 #ifndef SCORE_H
 #define SCORE_H
-#include "GroupInfo.h"
+#include "Player.h"
 
-class ScoreStack:public GroupInfo
+class ScoreStack :public Player
 {
 
 private:
@@ -10,6 +10,7 @@ private:
     {
         int score;
         Node* link;
+        
     };
 
 public:
@@ -25,7 +26,8 @@ public:
     void pushScore(int);
     int isEmpty();
     void popScore();
-    int displayScore();
+    void displayScore();
+    int getScore();
     //void add();
 
 

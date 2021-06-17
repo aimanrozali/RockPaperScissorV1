@@ -1,111 +1,152 @@
 #include <iostream>
-#include "GroupInfo.h"
 #include "ScoreStack.h"
-#include<time.h>
+#include <time.h>
 
 using namespace std;
 
-
+void startGame(Game*);
+void exitGame();
 
 int main()
 {
+    system("COLOR 79");
 
-    string name, gName;
-    double marks;
-    char prompt;
-    cout << "Welcome" << endl;
+    int choice;
 
-    ScoreStack gi[5]; // Allocate Group
+    Game gm;
 
-    cout << "How many Group? (MAX 5) : ";
-    int numGroup = 0;
-    cin >> numGroup;
-    Game obj;
-    obj.setGroup(numGroup);
-    
-    
-
-    for (int i = 0; i < obj.getGroup(); i++)
-    {
-        cout << "\nEnter Information for Group " << i + 1 << "(2 Players each group)" << endl;
-
-        int counter = 0;
-
-        do
-        {
-            cout << "Insert Player Name : ";
-            cin >> name;
-
-
-            gi[i].insertPlayer(name, i + 1);
-
-            counter++;
-        } while (counter != 2);
-
-
-    }
-
-    int numRound = 0;
-    cout << "\nHow many rounds you want to play ? : ";
-    cin >> numRound;
-
-    int playerChoice = 0, computerChoice = 0;
-
-
-
-    for (int i = 0; i < obj.getGroup(); ++i)
-    {
+    do {
         system("cls");
 
-        cout << "\nGROUP " << i+1 << endl;
-        int totalScore = 0;
+        cout << "\n";
+        cout << "\t\t ================================================\n";
+        cout << "\t\t|            Rock Paper Scissor Game            |\n";
+        cout << "\t\t ================================================\n\n\n";
+        cout << "\t\t-------------------------------------------------\n";
+        cout << "\t\t|\t             1. Start Game              |\n";
+        cout << "\t\t-------------------------------------------------\n";
+        cout << "\t\t-------------------------------------------------\n";
+        cout << "\t\t|\t             2. Exit                    |\n";
+        cout << "\t\t-------------------------------------------------\n";
+        cout << "\t\tEnter Choice : ";
+        cin >> choice;
 
-        for (int j = 1; j <= numRound; ++j)
+        switch (choice)
         {
-            cout << "\nRound No: " << j << "/" << numRound << endl;
-            cout << "1. Rock" << endl;
-            cout << "2. Paper" << endl;
-            cout << "3. Scissor" << endl;
-            cout << "Select your choice : ";
-            cin >> playerChoice;
-
-            srand(time(0));
-            computerChoice = (rand() % 3) + 1;
-
-            // If player win
-            if (playerChoice == 1 && computerChoice == 3)
-            {
-                cout << "Player Win ! You got 1 points !" << endl;
-                gi[i].pushScore(1);
-            }
-            else if (playerChoice == 2 && computerChoice == 1)
-            {
-                cout << "Player Win ! You got 1 points !" << endl;
-                gi[i].pushScore(1);
-            }
-            else if (playerChoice == 3 && computerChoice == 2)
-            {
-                cout << "Player Win ! You got 1 points !" << endl;
-                gi[i].pushScore(1);
-            }
-            else if (playerChoice == computerChoice)
-            {
-                cout << "Draw !" << endl;
-                cout << "No score given" << endl;
-            }
-            else
-            {
-                cout << "Computer Win" << endl;
-            }
-
-            //totalScore += totalScore;
-
+        case 1:
+            system("cls");
+            startGame(&gm);
+            break;
+        case 2:
+            exitGame();
+            break;
         }
 
-        cout << "Total Score : " << gi[i].displayScore() << endl;
-        system("PAUSE");
-    }
+    } while (choice != 2);
 
 
     return 0;
+}
+
+void startGame(Game* gm)
+{
+    string name1,name2, gName;
+    ScoreStack gi[5];
+
+    cout << "\nHow many Group? (MAX 5) : ";
+    int numGroup = 0;
+    cin >> numGroup;
+    gm->setGroup(numGroup);
+
+
+    for (int i = 0; i < numGroup; i++)
+    {
+        cout << "\nEnter Information for Group " << i + 1 << "(2 Players each group)" << endl;
+
+        //int maxPlayer = 0;
+
+        
+       
+            cout << "Insert Player Name Player 1 : ";
+            cin >> name1;
+            cout << "Insert Player Name Player 2 : ";
+            cin >> name2;
+
+            gi[i].push(name1);
+            gi[i].push(name2);
+
+            
+        
+    }
+    int numRound = 0;
+    cout << "\nHow many rounds you want to play ? : ";
+    cin >> numRound;
+    gm->setRound(numRound);
+
+    int playerChoice = 0, computerChoice = 0;
+    //Player
+    
+        
+
+        
+            // In round?
+            for (int j = 0; j < gm->getRound(); j++)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    //Turn Player
+                    cout << "Player " << i + 1 << " from each Group Turn\n";
+                // From Group?
+                for (int k = 0; k < gm->getGroup(); k++)
+                {
+                    cout << "Player " << gi[k].remove() << endl;
+                    cout << "Round " << j + 1;
+
+                    cout << "1. Rock" << endl;
+                    cout << "2. Paper" << endl;
+                    cout << "3. Scissor" << endl;
+                    cout << "Select your choice : ";
+                    cin >> playerChoice;
+
+                    srand(time(0));
+                    computerChoice = (rand() % 3) + 1;
+
+                    if (playerChoice == 1 && computerChoice == 3)
+                    {
+                        cout << "Computer choose Scissor" << endl;
+                        cout << "Player Win ! You got 2 points !" << endl;
+                        //gi[k].pushScore(2);
+
+                    }
+                    else if (playerChoice == 2 && computerChoice == 1)
+                    {
+                        cout << "Computer Choose Rock" << endl;
+                        cout << "Player Win ! You got 2 points !" << endl;
+                        //gi[k].pushScore(2);
+
+                    }
+                    else if (playerChoice == 3 && computerChoice == 2)
+                    {
+                        cout << "Computer Choose Paper" << endl;
+                        cout << "Player Win ! You got 2 points !" << endl;
+                        //gi[k].pushScore(2);
+
+
+                    }
+                    else if (playerChoice == computerChoice)
+                    {
+                        cout << "Draw !" << endl;
+                        cout << "No score given" << endl;
+                    }
+                }
+            }
+        
+    }
+}
+
+void exitGame()
+{
+    cout << "\n\t\tThank you !" << endl;
+    system("PAUSE");
+    exit(1);
 }

@@ -21,10 +21,10 @@ public:
 
 	//Constructor
 	Game();
-	
+
 	// Member function
-	void numGroup();
-	//void gameSession();
+	//void startGame();
+	//void exitGame();
 	//void setScoretoStack(int);
 	/*void pushScore(int s)
 	{
