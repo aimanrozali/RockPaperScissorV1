@@ -72,8 +72,8 @@ void startGame(Game* gm)
             cout << "Insert Player Name Player 2 : ";
             cin >> name2;
 
-            gi[i].push(name1);
-            gi[i].push(name2);
+            gi[i].insertPlayer(name1);
+            gi[i].insertPlayer(name2);
 
             
         
@@ -115,21 +115,21 @@ void startGame(Game* gm)
                     {
                         cout << "Computer choose Scissor" << endl;
                         cout << "Player Win ! You got 2 points !" << endl;
-                        //gi[k].pushScore(2);
+                        gi[k].pushScore(2);
 
                     }
                     else if (playerChoice == 2 && computerChoice == 1)
                     {
                         cout << "Computer Choose Rock" << endl;
                         cout << "Player Win ! You got 2 points !" << endl;
-                        //gi[k].pushScore(2);
+                        gi[k].pushScore(2);
 
                     }
                     else if (playerChoice == 3 && computerChoice == 2)
                     {
                         cout << "Computer Choose Paper" << endl;
                         cout << "Player Win ! You got 2 points !" << endl;
-                        //gi[k].pushScore(2);
+                        gi[k].pushScore(2);
 
 
                     }
