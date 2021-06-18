@@ -31,7 +31,7 @@ public:
 
     //Destructor
     ~ScoreStack();
-
+     
 };
 
 #endif // SCORE_H

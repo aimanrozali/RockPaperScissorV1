@@ -30,7 +30,7 @@ void Player::push(string x)
 		rear = np;
 		rear->next = NULL;
 	}
-}
+} 
 
 void Player::insertPlayer(string nm)
 {

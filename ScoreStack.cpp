@@ -25,7 +25,7 @@ int ScoreStack::isEmpty()
 {
     return top == NULL;
 }
-
+ 
 // Utility function to pop top
 // element from the stack
 void ScoreStack::popScore()

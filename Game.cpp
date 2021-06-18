@@ -28,3 +28,4 @@ Game::Game()
     group = 0;
     round = 0;
 }
+ 

@@ -277,7 +277,7 @@ void decideWinner(ScoreStack gi[], Game* gm)
         }
         
     }
-
+     
     // Loop to check if there is draw
     for (int n = 0; n < gm->getGroup(); n++)
     {
