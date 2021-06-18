@@ -96,7 +96,7 @@ void startGame(Game* gm, ScoreStack gi[])
 
     //loop to get player name by each group
     for (int i = 0; i < gm->getGroup(); i++)
-    {
+    {   
         cout << "\n\t\t\t\t----------------------------------------------" << endl;
         cout << "\n\t\t\t\tEnter Information for Group " << i + 1 << "(2 Players each group)" << endl;
         cout << "\n\t\t\t\t----------------------------------------------" << endl;
@@ -270,7 +270,7 @@ void decideWinner(ScoreStack gi[], Game* gm)
     for (int i = 0; i < gm->getGroup(); i++)
     {
         if (gi[i].getScore() > max)
-        {
+        {   
             maxi = i;
             max = gi[i].getScore();
             
