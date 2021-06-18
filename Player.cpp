@@ -97,7 +97,7 @@ string Player::remove()
 	return nm;
 }
 
-//Function to check if 
+//Function to check if queue is empty
 bool Player::isEmpty()
 {
 	if (front == NULL)
@@ -106,6 +106,7 @@ bool Player::isEmpty()
 		return false;
 }
 
+// destructor
 Player::~Player()
 {
 	NodeLL* nodePtr; // To traverse the list

@@ -99,5 +99,4 @@ ScoreStack::~ScoreStack()
         delete temp;
         temp = nextNode;
     }
-   // Player::~Player();
 }
