@@ -1,5 +1,6 @@
 #include <string>
 #include "Game.h"
+#include <iostream>
 using namespace std;
 
 class Player :public Game
@@ -28,5 +29,5 @@ public:
 	bool isEmpty();
 	void insertPlayer(string);
 	void allocatePlayer();
-
+	
 };

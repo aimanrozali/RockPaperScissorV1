@@ -56,10 +56,12 @@ void Player::allocatePlayer()
 	{
 		nodePtr = head;
 
-		while (nodePtr->next && nodePtr->next != NULL)
+		while (nodePtr)
 		{
 			push(nodePtr->playerName);
+			//cout << "Push " << nodePtr->playerName << endl;
 			nodePtr = nodePtr->next;
+			
 
 		}
 			
@@ -71,19 +73,17 @@ string Player::remove()
 	string nm = "No Player";
 	if (front == NULL)
 	{
-		cout << "No Player!\n";
+		//cout << "No Player!\n";
 		allocatePlayer();
-		goto nx;
+		
 	}
-	else
-	{
-		nx:
+	
 		p = front;
 		nm = p->name;
 		front = front->next;
 		delete p;
 		
-	}
+	
 	return nm;
 }
 
