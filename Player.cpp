@@ -97,6 +97,7 @@ string Player::remove()
 	return nm;
 }
 
+//Function to check if 
 bool Player::isEmpty()
 {
 	if (front == NULL)

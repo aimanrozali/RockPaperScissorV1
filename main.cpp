@@ -261,7 +261,7 @@ void decideWinner(ScoreStack gi[], Game* gm)
 {
     // variable hold the highest
     // variable to hold the index of highest and draw
-    int maxi = -1, max = 0, drawi = 0,
+    int maxi = -1, max = 0, drawi = 0;
 
     //flags to indicate if the score draw
     bool draw = false;
