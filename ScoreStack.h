@@ -28,6 +28,7 @@ public:
     void popScore();
     void displayScore();
     int getScore();
+    ~ScoreStack();
     //void add();
 
 

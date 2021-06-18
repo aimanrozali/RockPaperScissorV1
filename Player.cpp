@@ -113,3 +113,26 @@ bool Player::isEmpty()
 	else
 		return false;
 }
+
+Player::~Player()
+{
+	NodeLL* nodePtr; // To traverse the list
+	NodeLL* nextNode; //To point to the next node
+
+	//Position nodePtr at the head of the list.
+	nodePtr = head;
+
+	//While nodePtr is not at the end of the list...
+	while (nodePtr != nullptr)
+	{
+		//Save a pointer to the next node.
+		nextNode = nodePtr->next;
+
+		//Delete the current node.
+		delete nodePtr;
+
+		//Position nodePtr at the next node.
+		nodePtr = nextNode;
+	}
+	cout << "Linked List successfully destroyed.\n";
+}

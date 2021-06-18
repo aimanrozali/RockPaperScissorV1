@@ -36,7 +36,7 @@ void ScoreStack::popScore()
     // Check for stack underflow
     if (top == NULL)
     {
-        cout << "\nNo points :( " << endl;
+        cout << "No Marks Received!" << endl;
     }
     else
     {
@@ -85,4 +85,21 @@ int ScoreStack::getScore()
         return total;
     }
 
+}
+
+ScoreStack::~ScoreStack()
+{
+    Node* nodePtr, * nextNode;
+
+    //Position nodePtr at the top of the stack
+    nodePtr = top;
+
+    //Traverse the list deleting each node
+    while (nodePtr != nullptr)
+    {
+        nextNode = nodePtr->link;
+        delete nodePtr;
+        nodePtr = nextNode;
+    }
+    cout << "Destructor for ScoreStack" << endl;
 }

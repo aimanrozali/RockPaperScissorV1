@@ -29,5 +29,6 @@ public:
 	bool isEmpty();
 	void insertPlayer(string);
 	void allocatePlayer();
+	~Player();
 	
 };
