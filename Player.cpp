@@ -72,7 +72,6 @@ void Player::allocatePlayer()
 		while (nodePtr)
 		{
 			push(nodePtr->playerName);
-			//cout << "Push " << nodePtr->playerName << endl;
 			nodePtr = nodePtr->next;
 			
 
