@@ -2,35 +2,35 @@
 #define SCORE_H
 #include "Player.h"
 
+//Inherit from Player class
 class ScoreStack :public Player
 {
 
 private:
+    //Create node structure
     struct Node
     {
         int score;
         Node* link;
         
     };
-
-public:
-    //friend class GroupInfo;
-
+    // Create Node at top
     Node* top;
 
+public:
+    // Constructor
     ScoreStack()
     {
         top = nullptr;
     }
-
+    // Member Function
     void pushScore(int);
     int isEmpty();
     void popScore();
-    void displayScore();
     int getScore();
-    ~ScoreStack();
-    //void add();
 
+    //Destructor
+    ~ScoreStack();
 
 };
 

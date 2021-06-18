@@ -6,9 +6,8 @@ void ScoreStack::pushScore(int s)
 {
 
     // Create new node temp and allocate memory
-//    struct Node* temp;
-//    temp = new Node();
     struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
+
     // Initialize data into temp data field
     temp->score = s;
 
@@ -65,9 +64,7 @@ int ScoreStack::getScore()
     // Check for stack underflow
     if (top == NULL)
     {
-        cout << "\n No Points :( !";
         return 0;
-        //exit(1);
     }
     else
     {
@@ -76,9 +73,10 @@ int ScoreStack::getScore()
         {
 
             // Print node data
-            //cout << temp->score << "-> ";
+
             total += temp->score;
             // Assign temp link to temp
+
             temp = temp->link;
 
         }
@@ -89,17 +87,17 @@ int ScoreStack::getScore()
 
 ScoreStack::~ScoreStack()
 {
-    Node* nodePtr, * nextNode;
+    Node* temp, * nextNode;
 
     //Position nodePtr at the top of the stack
-    nodePtr = top;
+    temp = top;
 
     //Traverse the list deleting each node
-    while (nodePtr != nullptr)
+    while (temp != nullptr)
     {
-        nextNode = nodePtr->link;
-        delete nodePtr;
-        nodePtr = nextNode;
+        nextNode = temp->link;
+        delete temp;
+        temp = nextNode;
     }
-    cout << "Destructor for ScoreStack" << endl;
+   // Player::~Player();
 }

@@ -1,21 +1,24 @@
-#include <string>
 #include "Game.h"
-#include <iostream>
+#include <string>
 using namespace std;
 
+// Class Player inherit from Game class
 class Player :public Game
 {
 private:
+	// Queue Node
 	struct NodeQ
 	{
 		string name;
 		struct NodeQ* next;
 	};
+	//Linked List Node
 	struct NodeLL
 	{
 		string playerName;
 		struct NodeLL* next;
 	};
+	// Vreate required pointer to access Linked List and Queue
 	NodeLL* head = NULL;
 	NodeQ* front = NULL;
 	NodeQ* rear = NULL;
@@ -23,12 +26,14 @@ private:
 	NodeQ* np = NULL;
 
 public:
+	// Member function
 	void push(string);
 	string remove();
-	string disp();
 	bool isEmpty();
 	void insertPlayer(string);
 	void allocatePlayer();
+
+	// Destructor
 	~Player();
 	
 };

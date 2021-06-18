@@ -5,17 +5,27 @@ using namespace std;
 
 void Player::push(string x)
 {
+	//Assign np to new node
 	np = new NodeQ;
+
+	//Pass name to new node
 	np->name = x;
+
+	//Link its next to null
 	np->next = NULL;
 
+	//Check if there is no data yet
 	if (front == NULL)
 	{
+		// If there is no data yet
+		// put new node to front
+		//assign rear and front to new node
 		front = rear = np;
 		rear->next = NULL;
 	}
-	else
+	else //If there is already have element in queue
 	{
+		// Put new node to last list of queue
 		rear->next = np;
 		rear = np;
 		rear->next = NULL;
@@ -39,6 +49,7 @@ void Player::insertPlayer(string nm)
 	{
 		nodePtr = head;
 
+		// traverse linked list to the end
 		while (nodePtr->next)
 			nodePtr = nodePtr->next;
 
@@ -47,6 +58,8 @@ void Player::insertPlayer(string nm)
 	}
 }
 
+// This function is to copy data from linked list
+// to queue after completed each round
 void Player::allocatePlayer()
 {
 	NodeLL* nodePtr = NULL;
@@ -68,42 +81,21 @@ void Player::allocatePlayer()
 	}
 }
 
+// Dequeue for player turn
 string Player::remove()
 {
-	string nm = "No Player";
-	if (front == NULL)
-	{
-		//cout << "No Player!\n";
-		allocatePlayer();
-		
-	}
-	
-		p = front;
-		nm = p->name;
-		front = front->next;
-		delete p;
-		
-	
-	return nm;
-}
-
-string Player::disp()
-{
-	static NodeQ* temp = front;
 	string nm = "";
 	if (front == NULL)
 	{
-		return "No Player";
+		allocatePlayer();		
 	}
-	else
-	{
-		p = temp;
-		nm = p->name;
-		temp = front->next;
-		return nm;
 
-	}
-	
+	p = front;
+	nm = p->name;
+	front = front->next;
+	delete p;
+		
+	return nm;
 }
 
 bool Player::isEmpty()
@@ -134,5 +126,4 @@ Player::~Player()
 		//Position nodePtr at the next node.
 		nodePtr = nextNode;
 	}
-	cout << "Linked List successfully destroyed.\n";
 }
