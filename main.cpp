@@ -9,11 +9,14 @@ void gameInstruction();
 void decideWinner(ScoreStack*, Game*);
 void exitGame();
 void resetPlayer(Game*, ScoreStack*);
+
+//Function For UI
+void displayRPS(int, int);
+void startSprite();
 void rock();
 void scissor();
 void paper();
-void displayRPS(int, int);
-void startSprite();
+void winnerSprite();
 
 int main()
 {
@@ -28,10 +31,10 @@ int main()
 
         startSprite();
 
-        cout << "\t\tEnter Choice : ";
+        cout << "\t\t\t\tEnter Choice : ";
         while (!(cin >> choice) || choice < 1 || choice > 3)
         {
-            cout << "\t\tInvalid input. Please enter from 1 - 3 : ";
+            cout << "\t\t\t\tInvalid input. Please enter from 1 - 3 : ";
             cin.clear();
             cin.ignore();
         }
@@ -58,33 +61,34 @@ int main()
 
 void startGame(Game* gm, ScoreStack gi[])
 {
-    string name1, name2, gName;
+    string name1, name2;
     
-
-    cout << "\nHow many Group? (MAX 5) : ";
+    cout << "\n\t\t\t\t----------------------------------------------" << endl;
+    cout << "\n\t\t\t\t\tHow many Group? (MAX 5) : ";
     int numGroup = 0;
 
-    while (!(cin >> numGroup) || numGroup < 1 || numGroup > 5)
+    while (!(cin >> numGroup) || numGroup < 2 || numGroup > 5)
     {
-        cout << "Invalid input. Maximum only 5 groups : ";
+        cout << "\t\t\t\t\tInvalid input. Minimum is 2 groups and maximum only 5 groups : ";
         cin.clear();
         cin.ignore();
     }
     gm->setGroup(numGroup);
+    cout << "\t\t\t\t----------------------------------------------" << endl;
 
 
     for (int i = 0; i < gm->getGroup(); i++)
     {
-        cout << "\nEnter Information for Group " << i + 1 << "(2 Players each group)" << endl;
+        cout << "\n\t\t\t\t----------------------------------------------" << endl;
+        cout << "\n\t\t\t\tEnter Information for Group " << i + 1 << "(2 Players each group)" << endl;
+        cout << "\n\t\t\t\t----------------------------------------------" << endl;
 
-        //int maxPlayer = 0;
-
-
-
-        cout << "Insert Player Name Player 1 : ";
+        cout << "\n\t\t\t\t\tInsert Player Name Player 1 : ";
         cin >> name1;
-        cout << "Insert Player Name Player 2 : ";
+        cout << "\n\n\t\t\t\t\tInsert Player Name Player 2 : ";
         cin >> name2;
+
+        cout << "\n\t\t\t\t----------------------------------------------" << endl;
 
         gi[i].insertPlayer(name1);
         gi[i].insertPlayer(name2);
@@ -94,14 +98,16 @@ void startGame(Game* gm, ScoreStack gi[])
     }
 
     int numRound = 0;
-    cout << "\nHow many rounds you want to play ? : ";
+    cout << "\n\t\t\t\t----------------------------------------------" << endl;
+    cout << "\n\t\t\t\t\tHow many rounds you want to play ? : ";
 
     while (!(cin >> numRound) || numRound < 0)
     {
-        cout << "Invalid input. Please enter positive number : ";
+        cout << "\t\t\tInvalid input. Please enter positive number : ";
         cin.clear();
         cin.ignore();
     }
+    cout << "\n\t\t\t\t----------------------------------------------" << endl;
 
     gm->setRound(numRound);
 
@@ -111,30 +117,30 @@ void startGame(Game* gm, ScoreStack gi[])
             // In round?
     for (int j = 1; j <= gm->getRound(); j++)
     {
-        
-
         for (int i = 0; i < 2; i++)
         {   
             system("PAUSE");
             system("cls");
             //Turn Player
-            cout << "\n-----------------------------------" << endl;
-            cout << "Player " << i + 1 << " from each Group Turn     | \n";
-            cout << "-----------------------------------" << endl;
+            cout << "\n\t\t\t\t-----------------------------------" << endl;
+            cout << "\t\t\t\t||   Player " << i + 1 << " from each Group Turn     || \n";
+            cout << "\t\t\t\t-----------------------------------" << endl;
             // From Group?
             for (int k = 0; k < gm->getGroup(); k++)
             {
-                cout << "\nROUND " << j << "/" << gm->getRound();
-                cout << "\n" << gi[k].remove() << "'s Turn " << endl;
-                cout << "-----------------------------------" << endl;
-                cout << "1. Rock" << endl;
-                cout << "2. Paper" << endl;
-                cout << "3. Scissor" << endl;
-                cout << "Select your choice : ";
+                cout << "\n\t\t\t\t-----------------------------------" << endl;
+                cout << "\n\t\t\t\t||\tROUND " << j << "/" << gm->getRound() << "\t\t||" << endl;
+                cout << "\n\t\t\t\t-----------------------------------" << endl;
+                cout << "\n\t\t\t\t" << gi[k].remove() << "'s Turn \n" << endl;
+                cout << "\t\t\t\t-----------------------------------" << endl;
+                cout << "\t\t\t\t1. Rock" << endl;
+                cout << "\t\t\t\t2. Paper" << endl;
+                cout << "\t\t\t\t3. Scissor" << endl;
+                cout << "\t\t\t\tSelect your choice : ";
 
                 while (!(cin >> playerChoice) || playerChoice < 1 || playerChoice > 3)
                 {
-                    cout << " Invalid input. Please enter from 1 -3 : ";
+                    cout << "\t\t\t\tInvalid input. Please enter from 1 -3 : ";
                     cin.clear();
                     cin.ignore();
                 }
@@ -145,24 +151,24 @@ void startGame(Game* gm, ScoreStack gi[])
                 if (playerChoice == 1 && computerChoice == 3)
                 {
                     displayRPS(playerChoice, computerChoice);
-                    cout << "Computer choose Scissor" << endl;
-                    cout << "Player Win ! You got 2 points !" << endl;
+                    cout << "\t\t\t\tComputer choose Scissor" << endl;
+                    cout << "\t\t\t\tPlayer Win ! You got 2 points !" << endl;
                     gi[k].pushScore(2);
 
                 }
                 else if (playerChoice == 2 && computerChoice == 1)
                 {
                     displayRPS(playerChoice, computerChoice);
-                    cout << "Computer Choose Rock" << endl;
-                    cout << "Player Win ! You got 2 points !" << endl;
+                    cout << "\t\t\t\tComputer Choose Rock" << endl;
+                    cout << "\t\t\t\tPlayer Win ! You got 2 points !" << endl;
                     gi[k].pushScore(2);
 
                 }
                 else if (playerChoice == 3 && computerChoice == 2)
                 {
                     displayRPS(playerChoice, computerChoice);
-                    cout << "Computer Choose Paper" << endl;
-                    cout << "Player Win ! You got 2 points !" << endl;
+                    cout << "\t\t\t\tComputer Choose Paper" << endl;
+                    cout << "\t\t\t\tPlayer Win ! You got 2 points !" << endl;
                     gi[k].pushScore(2);
 
 
@@ -170,35 +176,38 @@ void startGame(Game* gm, ScoreStack gi[])
                 else if (playerChoice == computerChoice)
                 {
                     displayRPS(playerChoice, computerChoice);
-                    cout << "Draw !" << endl;
-                    cout << "No score given" << endl;
+                    cout << "\t\t\t\tDraw !" << endl;
+                    cout << "\t\t\t\tNo score given" << endl;
                     gi[k].pushScore(0);
                 }
                 else
                 {
                     displayRPS(playerChoice, computerChoice);
-                    cout << "Computer Wins!" << endl;
-                    cout << "No Score Given" << endl;
+                    cout << "\t\t\t\tComputer Wins!" << endl;
+                    cout << "\t\t\t\tNo Score Given" << endl;
                     gi[k].pushScore(0);
                 }
             }
-        }
-
-       
-            
+        }          
     }
     system("PAUSE");
 
     system("cls");
-    cout << "\t\t\t\t------------------------------------------\n";
+
+    cout << "\t\t\t\t==========================================\n";
     cout << "\t\t\t\t||\tGAME OVER\t\t\t||" << endl;
-    cout << "\t\t\t\t------------------------------------------\n";
+    cout << "\t\t\t\t==========================================\n";
+
     for (int i = 0; i < gm->getGroup(); i++)
     {
         cout << "\t\t\t\t------------------------------------------\n";
         cout << "\t\t\t\t||\tGroup "<< i+1 << " Score : "<< gi[i].getScore() << "\t\t||" << endl;
         cout << "\t\t\t\t------------------------------------------\n";
     }
+
+    //Display Sprite Winner
+    winnerSprite();
+
     decideWinner(gi,gm);
     resetPlayer(gm, gi);
     
@@ -247,16 +256,16 @@ void gameInstruction()
     system("cls");
 
     cout << "\n";
-    cout << "\t\t ================================================\n";
-    cout << "\t\t|                  Instruction                  |\n";
-    cout << "\t\t ================================================\n\n\n";
-    cout << "\t\t 1. This game can be play in groups (MAX 5)\n";
-    cout << "\t\t 2. Each group will have 2 players only \n";
-    cout << "\t\t 3. Whoever wins will be rewarded 2 points\n";
-    cout << "\t\t 4. Group with highest score wins the game\n";
-    cout << "\n\t\t #Rock wins against scissors.\n";
-    cout << "\t\t #Scissors win against paper.\n";
-    cout << "\t\t #Paper wins against rock.\n";
+    cout << "\t\t\t\t================================================\n";
+    cout << "\t\t\t\t|                  Instruction                  |\n";
+    cout << "\t\t\t\t================================================\n\n\n";
+    cout << "\t\t\t\t 1. This game can be play in groups (MAX 5)\n";
+    cout << "\t\t\t\t 2. Each group will have 2 players only \n";
+    cout << "\t\t\t\t 3. Whoever wins will be rewarded 2 points\n";
+    cout << "\t\t\t\t 4. Group with highest score wins the game\n";
+    cout << "\n\t\t\t\t #Rock wins against scissors.\n";
+    cout << "\t\t\t\t #Scissors win against paper.\n";
+    cout << "\t\t\t\t #Paper wins against rock.\n";
 
     system("PAUSE");
 }
@@ -280,19 +289,19 @@ void displayRPS(int player, int pc)
     if (player == 1 && pc==3)
     {
         rock();
-        cout << "\n\n\n\t\t\t\t VS \n\n\n";
+        cout << "\n\n\n\t\t\t\t===================== VS ===================== \n\n\n";
         scissor();
     }
     else if (player == 2 && pc==1)
     {
         paper();
-        cout << "\n\n\n\t\t\t\t VS \n\n\n";
+        cout << "\n\n\n\t\t\t\t===================== VS ===================== \n\n\n";
         rock();
     }
     else if (player == 3 && pc==2)
     {
         scissor();
-        cout << "\n\n\n\t\t\t\t VS \n\n\n";
+        cout << "\n\n\n\t\t\t\t===================== VS ===================== \n\n\n";
         paper();
     }
     // draw
@@ -301,19 +310,19 @@ void displayRPS(int player, int pc)
         if (player == 1 && pc == 1)
         {
             rock();
-            cout << "\n\n\n\t\t\t\t VS \n\n\n";
+            cout << "\n\n\n\t\t\t\t===================== VS ===================== \n\n\n";
             rock();
         }
         else if (player = 2 && pc == 2)
         {
             paper();
-            cout << "\n\n\n\t\t\t\t VS \n\n\n";
+            cout << "\n\n\n\t\t\t\t===================== VS ===================== \n\n\n";
             paper();
         }
         else
         {
             scissor();
-            cout << "\n\n\n\t\t\t\t VS \n\n\n";
+            cout << "\n\n\n\t\t\t\t===================== VS ===================== \n\n\n";
             scissor();
         }
     }
@@ -324,19 +333,19 @@ void displayRPS(int player, int pc)
         if (player == 3 && pc == 1)
         {
             scissor();
-            cout << "\n\n\n\t\t\t\t VS \n\n\n";
+            cout << "\n\n\n\t\t\t\t===================== VS ===================== \n\n\n";
             rock();
         }
         else if (player == 1 && pc == 2)
         {
             rock();
-            cout << "\n\n\n\t\t\t\t VS \n\n\n";
+            cout << "\n\n\n\t\t\t\t===================== VS ===================== \n\n\n";
             paper();
         }
         else if (player == 2 && pc == 3)
         {
             paper();
-            cout << "\n\n\n\t\t\t\t VS \n\n\n";
+            cout << "\n\n\n\t\t\t\t===================== VS ===================== \n\n\n";
             scissor();
         }
         
@@ -346,32 +355,32 @@ void displayRPS(int player, int pc)
 
 void rock()
 {
-    cout << "\t\t\t\t    _______" << endl;
-    cout << "\t\t\t\t---'   ____)" << endl;
-    cout << "\t\t\t\t      (_____)" << endl;
-    cout << "\t\t\t\t      (_____)" << endl;
-    cout << "\t\t\t\t      (____)" << endl;
-    cout << "\t\t\t\t---.__(___)" << endl;
+    cout << "\t\t\t\t\t\t    _______" << endl;
+    cout << "\t\t\t\t\t\t---'   ____)" << endl;
+    cout << "\t\t\t\t\t\t      (_____)" << endl;
+    cout << "\t\t\t\t\t\t      (_____)" << endl;
+    cout << "\t\t\t\t\t\t      (____)" << endl;
+    cout << "\t\t\t\t\t\t---.__(___)" << endl;
 }
 
 void paper()
 {
-    cout << "\t\t\t\t     _______" << endl;
-    cout << "\t\t\t\t---'    ____)____" << endl;
-    cout << "\t\t\t\t           ______)" << endl;
-    cout << "\t\t\t\t          _______)" << endl;
-    cout << "\t\t\t\t         _______)" << endl;
-    cout << "\t\t\t\t---.__________)" << endl;
+    cout << "\t\t\t\t\t\t     _______" << endl;
+    cout << "\t\t\t\t\t\t---'    ____)____" << endl;
+    cout << "\t\t\t\t\t\t           ______)" << endl;
+    cout << "\t\t\t\t\t\t          _______)" << endl;
+    cout << "\t\t\t\t\t\t         _______)" << endl;
+    cout << "\t\t\t\t\t\t---.__________)" << endl;
 }
 
 void scissor()
 {
-    cout << "\t\t\t\t    _______" << endl;
-    cout << "\t\t\t\t---'   ____)____" << endl;
-    cout << "\t\t\t\t          ______)" << endl;
-    cout << "\t\t\t\t       __________)" << endl;
-    cout << "\t\t\t\t      (____)" << endl;
-    cout << "\t\t\t\t---.__(___)" << endl;
+    cout << "\t\t\t\t\t\t    _______" << endl;
+    cout << "\t\t\t\t\t\t---'   ____)____" << endl;
+    cout << "\t\t\t\t\t\t          ______)" << endl;
+    cout << "\t\t\t\t\t\t       __________)" << endl;
+    cout << "\t\t\t\t\t\t      (____)" << endl;
+    cout << "\t\t\t\t\t\t---.__(___)" << endl;
 }
 
 void startSprite()
@@ -408,4 +417,16 @@ void startSprite()
     cout << "\t\t\t\t\t  /_______  /__/\\_ \\__||__| " << endl;
     cout << "\t\t\t\t\t\t          \\/      \\/         " << endl;
     cout << "\t\t\t\t-------------------------------------------------\n";
+}
+
+void winnerSprite()
+{
+    cout << "\t\t\t\t$$\\      $$\\       $$$$$$\\       $$\\   $$\\       $$\\   $$\\       $$$$$$$$\\       $$$$$$$\\\\" << endl;
+    cout << "\t\t\t\t$$ | $\\  $$ |      \\_$$  _|      $$$\\  $$ |      $$$\\  $$ |      $$  _____|      $$  __$$\\\\" << endl;
+    cout << "\t\t\t\t$$ |$$$\\ $$ |        $$ |        $$$$\\ $$ |      $$$$\\ $$ |      $$ |            $$ |  $$ |" << endl;
+    cout << "\t\t\t\t$$ $$ $$\\$$ |        $$ |        $$ $$\\$$ |      $$ $$\\$$ |      $$$$$\\         $$$$$$$  |" << endl;
+    cout << "\t\t\t\t$$$$  _$$$$ |        $$ |        $$ \\$$$$ |      $$ \\$$$$ |      $$  __|         $$  __$$< " << endl;
+    cout << "\t\t\t\t$$$  / \\$$$ |        $$ |        $$ |\\$$$ |      $$ |\\$$$ |      $$ |            $$ |  $$ |" << endl;
+    cout << "\t\t\t\t$$  /   \\$$ |      $$$$$$\\       $$ | \\$$ |      $$ | \\$$ |      $$$$$$$$\\       $$ |  $$ |" << endl;
+    cout << "\t\t\t\t\\__/     \\__|      \\______|      \\__|  \\__|      \\__|  \\__|      \\________|      \\__|  \\__|" << endl;
 }
