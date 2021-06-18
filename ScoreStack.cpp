@@ -21,9 +21,12 @@ void ScoreStack::pushScore(int s)
 
 // Utility function to check if
 // the stack is empty or not
-int ScoreStack::isEmpty()
+bool ScoreStack::isEmpty()
 {
-    return top == NULL;
+    if (!top)
+        return true;
+    else
+        return false;
 }
  
 // Utility function to pop top
@@ -51,6 +54,7 @@ void ScoreStack::popScore()
         temp->link = NULL;
 
         // Release memory of top node
+        delete top;
 
     }
 }

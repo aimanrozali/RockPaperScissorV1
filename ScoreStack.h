@@ -1,5 +1,5 @@
-#ifndef SCORE_H
-#define SCORE_H
+#ifndef SCORESTACK_H
+#define SCORESTACK_H
 #include "Player.h"
 
 //Inherit from Player class
@@ -25,7 +25,7 @@ public:
     }
     // Member Function
     void pushScore(int);
-    int isEmpty();
+    bool isEmpty();
     void popScore();
     int getScore();
 

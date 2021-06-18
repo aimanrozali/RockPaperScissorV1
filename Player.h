@@ -18,7 +18,7 @@ private:
 		string playerName;
 		struct NodeLL* next;
 	};
-	// Vreate required pointer to access Linked List and Queue
+	// Create required pointer to access Linked List and Queue
 	NodeLL* head = NULL;
 	NodeQ* front = NULL;
 	NodeQ* rear = NULL;
