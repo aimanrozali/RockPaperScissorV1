@@ -323,7 +323,7 @@ void gameInstruction()
 //This functions will exit the game
 void exitGame()
 {
-    cout << "\n\t\tThank you !" << endl;
+    cout << "\n\t\t\t\tThank you !" << endl;
     system("PAUSE");
     exit(1);
 }
